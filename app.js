@@ -6,7 +6,7 @@ app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 
 app.use('/css', express.static('css'));
-app.get('/index', (request, response) => {
+app.get('/', (request, response) => {
     response.render('index', {
       subject: 'Pug template engine',
       name: 'Pug Example',
