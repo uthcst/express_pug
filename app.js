@@ -1,19 +1,19 @@
 const express = require('express');
-const bodyParser = require("body-parser");
-const app = express();
 const port = process.env.port || 4000;
-app.use(bodyParser.urlencoded({ extended: false }));
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/www/index.html');
-});
-app.post('/addBook', function (req, res) {
-    let book = {
-        author: req.body.author,
-        title: req.body.title,
-        year: req.body.year
-    }
-    res.send(book.title + ' submitted successfully!');
-});
-const server = app.listen(port, function () {
+const app = express();
+
+app.set('view engine', 'pug');
+app.set('views', __dirname + '/views');
+
+app.use('/css', express.static('css'));
+app.get('/index', (request, response) => {
+    response.render('index', {
+      subject: 'Pug template engine',
+      name: 'Pug Example',
+      link: 'http://cs.uth.gr'
+    });
+  });
+app.get("")
+app.listen(port, function () {
     console.log('Server is running at ', port);
 });
